@@ -1,22 +1,20 @@
 import fs from 'fs';
 
-import { Todo } from "./TodoClass.js";
+const args = process.argv.slice(2);
 
-console.log(
- `Parancssori Todo applikáció
-=============================
 
-Parancssori argumentumok:
-    -l   Kilistázza a feladatokat
-    -a   Új feladatot ad hozzá
-    -r   Eltávolít egy feladatot
-    -c   Teljesít egy feladatot`
-);
+if (args.includes("-l")) {
 
-if (process.argv.slice(2).includes("-l")) {
-
-    let parsedList = JSON.parse(fs.readFileSync("./list.json", "utf-8"));
-
-    console.log(parsedList);
+    let list = fs.readFileSync("./Data/todos.json", "utf-8");
+    let parsedList = JSON.parse(list);
+    for (let k in parsedList) {
+        console.log(
+            `${parseInt(k)+1} - ${parsedList[k]}`
+        )
+    }
+} else {
+    console.log(
+        fs.readFileSync("./intro.txt", "utf-8")
+    );
 }
 

@@ -1,8 +1,8 @@
 {
-  "name": "nagydan1_todo_app",
+  "name": "danis-todo-application",
   "version": "1.0.0",
-  "description": "todo app",
-  "main": "index.js",
+  "description": "Egyszerű todo alkalmazás",
+  "main": "todo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
