@@ -1,2 +1,5 @@
 # nagydan1_todo_app
-todo app
+
+## Opciók kiíratása
+
+Indítás: todo.js

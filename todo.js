@@ -1,6 +1,9 @@
+import fs from 'fs';
+
+import { Todo } from "./TodoClass.js";
+
 console.log(
-`$ todo
-Parancssori Todo applikáció
+ `Parancssori Todo applikáció
 =============================
 
 Parancssori argumentumok:
@@ -8,4 +11,12 @@ Parancssori argumentumok:
     -a   Új feladatot ad hozzá
     -r   Eltávolít egy feladatot
     -c   Teljesít egy feladatot`
-)
+);
+
+if (process.argv.slice(2).includes("-l")) {
+
+    let parsedList = JSON.parse(fs.readFileSync("./list.json", "utf-8"));
+
+    console.log(parsedList);
+}
+
