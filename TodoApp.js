@@ -10,6 +10,7 @@ export default class TodoApp {
     printList() {
         let list = fs.readFileSync("./Data/todos.json", "utf-8");
         let parsedList = JSON.parse(list);
+        
         if (parsedList.length == 0) {
             console.log(`Nincs mára tennivalód! :)`)
         } else {
