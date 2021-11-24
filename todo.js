@@ -1,20 +1,9 @@
-import fs from 'fs';
+import TodoApp from "./TodoApp.js";
 
 const args = process.argv.slice(2);
 
+const app = new TodoApp(args);
 
-if (args.includes("-l")) {
+app.run();
 
-    let list = fs.readFileSync("./Data/todos.json", "utf-8");
-    let parsedList = JSON.parse(list);
-    for (let k in parsedList) {
-        console.log(
-            `${parseInt(k)+1} - ${parsedList[k]}`
-        )
-    }
-} else {
-    console.log(
-        fs.readFileSync("./intro.txt", "utf-8")
-    );
-}
 
