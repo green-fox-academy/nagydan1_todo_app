@@ -25,6 +25,25 @@ export default class TodoApp {
             }
         }
     }
+    
+    printListWithStatus() {
+        let parsedList = this.getParsedList();
+        if (parsedList.length == 0) {
+            console.log(`Nincs mára tennivalód! :)`)
+        } else {
+            for (let k in parsedList) {
+                let x;
+                if (parsedList[k]["done"]) {
+                    x = "x";
+                } else {
+                    x = " ";
+                }
+                console.log(
+                    `${parseInt(k) + 1} - [${x}] ${parsedList[k]["todo"]}`
+                )
+            }
+        }
+    }
 
     addTodo(newTodo) {
         let item = new Todo(newTodo);
@@ -47,7 +66,7 @@ export default class TodoApp {
 
     run() {
         if (this.#args.includes("-l")) {
-            this.printList();
+            this.printListWithStatus();
         } else if (this.#args.includes("-a")) {
             let newTodo = this.#args[1];
             this.addTodo(newTodo);
