@@ -12,23 +12,29 @@ export default class TodoApp {
     }
 
     getParsedList() {
-        let list = fs.readFileSync("./Data/todos.json", "utf-8");
-        return JSON.parse(list);
+        try {
+            let list = fs.readFileSync("./Data/todos.json", "utf-8");
+            return JSON.parse(list);
+        } catch (error) {
+            console.log("A hiányzó fájlok létrehozása megtörtént. Kérlek próbáld újra.");
+            fs.mkdirSync("./Data");
+            fs.writeFileSync("./Data/todos.json", "[]")
+        }
     }
 
     printListWithStatus() {
         if (this.#parsedList.length == 0) {
             console.log(`Nincs mára tennivalód! :)`)
         } else {
-            for (let k in this.#parsedList) {
+            for (let listItem in this.#parsedList) {
                 let x;
-                if (this.#parsedList[k]["done"]) {
+                if (this.#parsedList[listItem]["done"]) {
                     x = "x";
                 } else {
                     x = " ";
                 }
                 console.log(
-                    `${parseInt(k) + 1} - [${x}] ${this.#parsedList[k]["todo"]}`
+                    `${parseInt(listItem) + 1} - [${x}] ${this.#parsedList[listItem]["todo"]}`
                 )
             }
         }
@@ -106,6 +112,9 @@ export default class TodoApp {
                 break;
             default:
                 console.log("Nem támogatott argumentum!");
+                console.log(
+                    fs.readFileSync("./intro.txt", "utf-8")
+                );
         }
     }
 }
